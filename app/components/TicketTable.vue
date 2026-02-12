@@ -89,9 +89,12 @@ const changeStatus = async (ticketId: number, status: string) => {
 
     const ticketIndex = tickets.value.findIndex(t => t.id === ticketId)
     if (ticketIndex !== -1) {
-      const updatedTicket = tickets.value[ticketIndex]
-      if (updatedTicket) {
-        updatedTicket.status = status as Ticket['status']
+      const currentTicket = tickets.value[ticketIndex]
+      if (currentTicket) {
+        tickets.value[ticketIndex] = {
+          ...currentTicket,
+          status: status as Ticket['status']
+        }
       }
     }
 
