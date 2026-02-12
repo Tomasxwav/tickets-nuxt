@@ -140,7 +140,7 @@ const onDragLeave = (event: DragEvent) => {
   }
 }
 
-const onDrop = (_event: DragEvent, newStatus: Ticket['status']) => {
+const onDrop = async (_event: DragEvent, newStatus: Ticket['status']) => {
   dragOverColumn.value = null
   
   if (!draggedTicket.value) return
@@ -150,6 +150,7 @@ const onDrop = (_event: DragEvent, newStatus: Ticket['status']) => {
   
   if (oldStatus === newStatus) {
     console.log(`El ticket #${ticket.id} ya está en el estado: ${newStatus}`)
+    draggedTicket.value = null
     return
   }
   
@@ -157,12 +158,35 @@ const onDrop = (_event: DragEvent, newStatus: Ticket['status']) => {
     ? oldStatus
     : newStatus
   
-  console.log('Cambio de estado de ticket:')
-  console.log(`Ticket ID: #${ticket.id}`)
-  console.log(`Estado anterior: ${oldStatus}`)
-  console.log(`Estado nuevo: ${targetStatus}`)
+  try {
+    await $fetch(`/api/tickets/${ticket.id}`, {
+      method: 'PATCH',
+      body: {
+        status: targetStatus
+      }
+    })
 
-  draggedTicket.value = null
+    const ticketIndex = tickets.value.findIndex(t => t.id === ticket.id)
+    if (ticketIndex !== -1) {
+      const currentTicket = tickets.value[ticketIndex]
+      if (currentTicket) {
+        tickets.value[ticketIndex] = {
+          id: currentTicket.id,
+          title: currentTicket.title,
+          description: currentTicket.description,
+          requestor: currentTicket.requestor,
+          department: currentTicket.department,
+          createdAt: currentTicket.createdAt,
+          priority: currentTicket.priority,
+          status: targetStatus
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error actualizando el ticket:', error)
+  } finally {
+    draggedTicket.value = null
+  }
 }
 
 </script>
