@@ -1,26 +1,33 @@
 <template>
-  <div 
-    draggable="true"
-    class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 mb-3 hover:shadow-md transition-shadow cursor-move select-none"
-    :class="{ 'opacity-50': isDragging }"
-    @dragstart="onDragStart"
-    @dragend="onDragEnd"
-  >
-    <div class="flex justify-between items-start mb-2">
-      <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">#{{ ticket.id }}</span>
-      <UBadge 
-        :color="priorityColor" 
-        variant="soft"
-        size="xs"
-      >
-        {{ priorityLabel }}
-      </UBadge>
+  <UModal>
+    <div 
+      draggable="true"
+      class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 mb-3 hover:shadow-md transition-shadow cursor-move"
+      :class="{ 'opacity-50': isDragging }"
+      @dragstart="onDragStart"
+      @dragend="onDragEnd"
+    >
+      <div class="flex justify-between items-start mb-2">
+        <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">#{{ ticket.id }}</span>
+        <UBadge 
+          :color="priorityColor" 
+          variant="soft"
+          size="xs"
+        >
+          {{ priorityLabel }}
+        </UBadge>
+      </div>
+      <p class="text-sm text-gray-800 dark:text-gray-200 mb-2">{{ ticket.title }}</p>
+      <div class="text-xs text-gray-500 dark:text-gray-400">
+        {{ formattedDate }}
+      </div>
     </div>
-    <p class="text-sm text-gray-800 dark:text-gray-200 mb-2">{{ ticket.description }}</p>
-    <div class="text-xs text-gray-500 dark:text-gray-400">
-      {{ formattedDate }}
-    </div>
-  </div>
+
+    <template #content>
+      <TicketModal :ticket="ticket" />
+    </template>
+  </UModal>
+
 </template>
 
 <script setup lang="ts">

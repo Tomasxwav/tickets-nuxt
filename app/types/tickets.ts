@@ -7,7 +7,6 @@ export interface Ticket {
   createdAt: string;
   status: 'open' | 'in_progress' | 'resolved' | 'closed';
   priority: 'low' | 'medium' | 'high' | 'urgent';
-  assignedTo?: string;
 }
 
 export interface TicketFormData {

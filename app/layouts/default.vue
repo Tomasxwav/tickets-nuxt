@@ -1,5 +1,5 @@
 <template>
-  <UPage class="w-screen min-h-screen">
+  <UPage class="w-screen min-h-screen overflow-x-hidden max-w-screen">
     <UPageHeader 
       title="Titulo"
       description="Subtitulo"
