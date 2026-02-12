@@ -27,11 +27,11 @@
       }"
     >
       <template #board>
-        <TicketBoard :initial-tickets="tickets" class="my-2 2xl:my-8"/>
+        <TicketBoard :initial-tickets="tickets || []" class="my-2 2xl:my-8"/>
       </template>
 
       <template #list>
-        <TicketTable :initial-tickets="tickets" class="my-2 2xl:my-8"/>
+        <TicketTable :initial-tickets="tickets || []" class="my-2 2xl:my-8"/>
       </template>
     </UTabs>
   </div>
@@ -52,22 +52,9 @@ const tabItems = ref<TabsItem[]>([
   }
 ])
 
-const loading = ref(true)
-const tickets = ref<Ticket[]>([])
-const error = ref<string | null>(null)
-
-onMounted(async () => {
-  try {
-    loading.value = true
-    error.value = null
-    
-    const data = await $fetch<Ticket[]>('/api/tickets')
-    tickets.value = data
-  } catch (err: unknown) {
-    console.error('Error al cargar tickets:', err)
-    error.value = (err instanceof Error ? err.message : 'Error al cargar los tickets')
-  } finally {
-    loading.value = false
-  }
+const { data: tickets, pending: loading, error: fetchError } = await useFetch<Ticket[]>('/api/tickets', {
+  key: 'tickets-list'
 })
+
+const error = computed(() => fetchError.value ? 'Error al cargar los tickets' : null)
 </script>

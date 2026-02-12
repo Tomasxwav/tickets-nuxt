@@ -67,7 +67,6 @@ const props = defineProps<{
   initialTickets: Ticket[]
 }>()
 
-
 const globalFilter = ref('')
 const tickets = ref<Ticket[]>(props.initialTickets)
 

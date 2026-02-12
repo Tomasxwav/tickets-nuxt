@@ -1,11 +1,11 @@
 <template>
   <UModal
     v-model:open="isOpen"
-    title="Agregar empresa"
-    description="Complete el formulario para agregar una nueva empresa"
+    title="Agregar ticket"
+    description="Complete el formulario para agregar una nueva ticket"
   >
     <UButton
-      label="Agregar empresa"
+      label="Agregar ticket"
       color="primary"
       variant="solid"
       icon="i-lucide-plus"
@@ -186,13 +186,21 @@ const ticketSchema = z.object({
 
 type TicketForm = z.output<typeof ticketSchema>
 
-const onSubmit = async (event: FormSubmitEvent<TicketForm>) => {
-  console.log('Form submitted with data:', event.data)
-
+const onSubmit = async (_event: FormSubmitEvent<TicketForm>) => {
   isSubmitting.value = true
 
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await $fetch('/api/tickets/create', {
+      method: 'POST',
+      body: {
+        title: state.title,
+        description: state.description,
+        requestor: state.requestor,
+        department: state.department,
+        priority: state.priority,
+        status: 'open'
+      }
+    })
 
     toast.add({
       title: 'Ticket creado',
@@ -209,6 +217,8 @@ const onSubmit = async (event: FormSubmitEvent<TicketForm>) => {
     })
 
     isOpen.value = false
+    
+    await refreshNuxtData('tickets-list')
   } catch (error) {
     console.error('Error creating ticket:', error)
     toast.add({
