@@ -18,6 +18,7 @@ const isDark = computed({
       color="neutral"
       variant="ghost"
       :aria-label="`Switch to ${isDark ? 'light' : 'dark'} mode`"
+      class="cursor-pointer"
       @click="isDark = !isDark"
     />
 

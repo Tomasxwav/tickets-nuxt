@@ -17,11 +17,11 @@
       }"
     >
       <template #board>
-        <TicketBoard :initial-tickets="tickets" class="my-8"/>
+        <TicketBoard :initial-tickets="tickets" class="my-2 2xl:my-8"/>
       </template>
 
       <template #list>
-        <TicketTable :initial-tickets="tickets" class="my-8"/>
+        <TicketTable :initial-tickets="tickets" class="my-2 2xl:my-8"/>
       </template>
     </UTabs>
   </div>

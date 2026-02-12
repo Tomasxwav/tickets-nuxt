@@ -5,10 +5,10 @@
     </div>
 
     <div class="grid grid-cols-3 gap-4">
-      <div class="bg-white rounded shadow p-4">
-        <h2 class="text-lg font-semibold mb-4">
+      <div class="bg-white dark:bg-gray-900 rounded shadow dark:shadow-gray-800 p-4">
+        <h2 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
           Por Hacer
-          <span class="text-sm text-gray-500 ml-2">({{ openTickets.length }})</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">({{ openTickets.length }})</span>
         </h2>
         <div v-if="openTickets.length > 0">
           <TicketCard 
@@ -17,13 +17,13 @@
             :ticket="ticket" 
           />
         </div>
-        <p v-else class="text-gray-500 text-sm">No hay tickets por hacer</p>
+        <p v-else class="text-gray-500 dark:text-gray-400 text-sm">No hay tickets por hacer</p>
       </div>
 
-      <div class="bg-white rounded shadow p-4">
-        <h2 class="text-lg font-semibold mb-4">
+      <div class="bg-white dark:bg-gray-900 rounded shadow dark:shadow-gray-800 p-4">
+        <h2 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
           En Progreso
-          <span class="text-sm text-gray-500 ml-2">({{ inProgressTickets.length }})</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">({{ inProgressTickets.length }})</span>
         </h2>
         <div v-if="inProgressTickets.length > 0">
           <TicketCard 
@@ -32,13 +32,13 @@
             :ticket="ticket" 
           />
         </div>
-        <p v-else class="text-gray-500 text-sm">No hay tickets en progreso</p>
+        <p v-else class="text-gray-500 dark:text-gray-400 text-sm">No hay tickets en progreso</p>
       </div>
 
-      <div class="bg-white rounded shadow p-4">
-        <h2 class="text-lg font-semibold mb-4">
+      <div class="bg-white dark:bg-gray-900 rounded shadow dark:shadow-gray-800 p-4">
+        <h2 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
           Hecho
-          <span class="text-sm text-gray-500 ml-2">({{ completedTickets.length }})</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">({{ completedTickets.length }})</span>
         </h2>
         <div v-if="completedTickets.length > 0">
           <TicketCard 
@@ -47,7 +47,7 @@
             :ticket="ticket" 
           />
         </div>
-        <p v-else class="text-gray-500 text-sm">No hay tickets completados</p>
+        <p v-else class="text-gray-500 dark:text-gray-400 text-sm">No hay tickets completados</p>
       </div>
     </div>
     

@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3 hover:shadow-md transition-shadow">
+  <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 mb-3 hover:shadow-md transition-shadow">
     <div class="flex justify-between items-start mb-2">
-      <span class="text-xs font-semibold text-gray-500">#{{ ticket.id }}</span>
+      <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">#{{ ticket.id }}</span>
       <UBadge 
         :color="priorityColor" 
         variant="soft"
@@ -10,8 +10,8 @@
         {{ priorityLabel }}
       </UBadge>
     </div>
-    <p class="text-sm text-gray-800 mb-2">{{ ticket.description }}</p>
-    <div class="text-xs text-gray-500">
+    <p class="text-sm text-gray-800 dark:text-gray-200 mb-2">{{ ticket.description }}</p>
+    <div class="text-xs text-gray-500 dark:text-gray-400">
       {{ formattedDate }}
     </div>
   </div>
