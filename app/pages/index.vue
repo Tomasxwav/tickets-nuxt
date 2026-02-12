@@ -17,7 +17,7 @@
       }"
     >
       <template #board>
-        <p>pa ahorita </p>
+        <TicketBoard :initial-tickets="tickets" class="my-8"/>
       </template>
 
       <template #list>
