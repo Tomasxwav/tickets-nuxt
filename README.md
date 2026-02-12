@@ -45,9 +45,16 @@ Para el desarrollo de este proyecto decidí utilizar un framework full stack mod
 
 Como motor de base de datos opté por libSQL, una versión optimizada de SQLite recomendada por Drizzle, el ORM utilizado en el proyecto. Drizzle permite realizar consultas a la base de datos de manera tipada y segura desde TypeScript.
 
-En el frontend, para optimizar tiempos de desarrollo y lograr un diseño moderno y consistente, utilicé Nuxt UI, una librería de componentes estilizados y funcionales. Esta librería se apoya en Tailwind CSS, lo que permite personalizar fácilmente los estilos.
+Para el frontend para optimizar tiempos y hacer un diseño moderno utilize Nuxt UI que es una libreria de componentes estilizados y con funcionalidad optimizada ademas de que hace uso de Tailwind CSS para poder customizarlos.
 
-## Stack usado
+### Desiciones de diseño
+
+Para el diseño de la aplicación me basé en Jira, un sistema de gestión de tareas que utiliza un tablero tipo Kanban con funcionalidad drag and drop para mover las tareas entre distintos estados. Elegí este enfoque porque considero que es una forma cómoda, visual e intuitiva de organizar la información, además de permitir una actualización rápida de los estados.
+
+Sin embargo, también opté por implementar la estructura tradicional de los sistemas de tickets, una vista en formato de tabla o lista, donde los tickets se muestran ordenados por fecha, colocando los más recientes al inicio. Esto facilita su seguimiento segun se requiera.
+
+
+### Stack usado
 
 - **Frontend**: Nuxt 4, Vue 3, TypeScript
 - **UI**: Nuxt UI, TailwindCSS
