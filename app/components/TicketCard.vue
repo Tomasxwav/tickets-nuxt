@@ -1,5 +1,11 @@
 <template>
-  <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 mb-3 hover:shadow-md transition-shadow">
+  <div 
+    draggable="true"
+    class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 mb-3 hover:shadow-md transition-shadow cursor-move select-none"
+    :class="{ 'opacity-50': isDragging }"
+    @dragstart="onDragStart"
+    @dragend="onDragEnd"
+  >
     <div class="flex justify-between items-start mb-2">
       <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">#{{ ticket.id }}</span>
       <UBadge 
@@ -24,6 +30,23 @@ import type { Ticket } from '~/types/tickets';
 const props = defineProps<{
   ticket: Ticket
 }>()
+
+const emit = defineEmits<{
+  dragStart: [ticket: Ticket]
+  dragEnd: []
+}>()
+
+const isDragging = ref(false)
+
+const onDragStart = (_event: DragEvent) => {
+  isDragging.value = true
+  emit('dragStart', props.ticket)
+}
+
+const onDragEnd = () => {
+  isDragging.value = false
+  emit('dragEnd')
+}
 
 const priorityColor  = computed<BadgeProps['color']>(() => {
   switch (props.ticket.priority) {
