@@ -39,52 +39,6 @@ npm run db:seed
 npm run dev
 ```
 
-## Endpoints
-
-### `GET /api/tickets`
-Obtiene todos los tickets.
-
-**Respuesta:**
-```json
-[
-  {
-    "id": 1,
-    "title": "Error en login",
-    "description": "No se puede iniciar sesión",
-    "requestor": "Juan Pérez",
-    "department": "soporte",
-    "status": "open",
-    "priority": "high",
-    "createdAt": "2026-02-12T10:00:00.000Z"
-  }
-]
-```
-
-### `POST /api/tickets/create`
-Crea un nuevo ticket.
-
-**Body:**
-```json
-{
-  "title": "Título del ticket",
-  "description": "Descripción detallada",
-  "requestor": "Nombre del solicitante",
-  "department": "soporte",
-  "priority": "medium",
-  "status": "open"
-}
-```
-
-### `PATCH /api/tickets/:id`
-Actualiza el estado de un ticket.
-
-**Body:**
-```json
-{
-  "status": "in_progress"
-}
-```
-
 ## Desiciones tecnicas
 
 Para el desarrollo de este proyecto decidí utilizar un framework full stack moderno como Nuxt, con el objetivo de centralizar en un mismo entorno el frontend, el backend y la conexión con la base de datos, y de esa forma tener un desarrollo mas rápido.
