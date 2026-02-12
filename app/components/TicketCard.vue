@@ -1,5 +1,5 @@
 <template>
-  <UModal>
+  <UModal title="Modal board" description="Información completa del ticket seleccionado">
     <div 
       draggable="true"
       class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 mb-3 hover:shadow-md transition-shadow cursor-move"

@@ -9,7 +9,52 @@
       :data="tickets"
       :columns="columns"
       class="flex-1"
-    />
+    >
+      <template #actions-cell="{ row }">
+        <UDropdownMenu
+          :items="[
+            [{
+              label: 'Ver detalles',
+              icon: 'i-lucide-eye',
+              onSelect: () => openModal(row.original)
+            }],
+            [{
+              label: 'Cambiar a Pendiente',
+              icon: 'i-lucide-circle-dot',
+              onSelect: () => changeStatus(row.original.id, 'open')
+            },
+            {
+              label: 'Cambiar a En Progreso',
+              icon: 'i-lucide-loader',
+              onSelect: () => changeStatus(row.original.id, 'in_progress')
+            },
+            {
+              label: 'Cambiar a Resuelto',
+              icon: 'i-lucide-check-circle',
+              onSelect: () => changeStatus(row.original.id, 'resolved')
+            },
+            {
+              label: 'Cambiar a Cerrado',
+              icon: 'i-lucide-x-circle',
+              onSelect: () => changeStatus(row.original.id, 'closed')
+            }]
+          ]"
+        >
+          <UButton
+            icon="i-lucide-more-vertical"
+            color="neutral"
+            variant="ghost"
+            square
+          />
+        </UDropdownMenu>
+      </template>
+    </UTable>
+
+    <UModal v-model:open="isModalOpen" title="Detalles del ticket" description="Información completa del ticket seleccionado">
+      <template #content>
+        <TicketModal v-if="selectedTicket" :ticket="selectedTicket" />
+      </template>
+    </UModal>
   </div>
 
 </template>
@@ -25,6 +70,18 @@ const props = defineProps<{
 
 const globalFilter = ref('')
 const tickets = ref<Ticket[]>(props.initialTickets)
+
+const isModalOpen = ref(false)
+const selectedTicket = ref<Ticket | null>(null)
+
+const openModal = (ticket: Ticket) => {
+  selectedTicket.value = ticket
+  isModalOpen.value = true
+}
+
+const changeStatus = (ticketId: number, status: string) => {
+  console.log('Cambiar estado:', ticketId, status)
+}
 
 
 </script>

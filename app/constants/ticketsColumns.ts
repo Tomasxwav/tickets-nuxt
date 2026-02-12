@@ -66,24 +66,6 @@ export const columns: TableColumn<Ticket>[] = [
     }
   },
   {
-    accessorKey: 'department',
-    header: 'Departamento',
-    cell: ({ row }) => {
-      const department = row.getValue('department') as string
-      const departmentMap: Record<string, string> = {
-        soporte: 'Soporte',
-        desarrollo: 'Desarrollo',
-        rrhh: 'RRHH',
-        ventas: 'Ventas',
-        marketing: 'Marketing',
-        administracion: 'Administración',
-        finanzas: 'Finanzas',
-        operaciones: 'Operaciones'
-      }
-      return departmentMap[department] || department
-    }
-  },
-  {
     accessorKey: 'createdAt',
     header: ({ column }) => {
       const isSorted = column.getIsSorted()
@@ -191,63 +173,6 @@ export const columns: TableColumn<Ticket>[] = [
   },
   {
     accessorKey: 'actions',
-    header: 'Acciones',
-    enableSorting: false,
-    cell: ({ row }) => {
-      const ticket = row.original
-      
-      return h(UDropdownMenu as any, {
-        items: [
-          [{
-            label: 'Ver detalles',
-            icon: 'i-lucide-eye',
-            class: 'cursor-pointer',
-            click: () => {
-              console.log('Ver detalles del ticket:', ticket)
-            }
-          }],
-          [{
-            label: 'Cambiar a Pendiente',
-            icon: 'i-lucide-circle-dot',
-            class: 'cursor-pointer',
-            click: () => {
-              console.log('Cambiar estado a pendiente:', ticket.id)
-            }
-          },
-          {
-            label: 'Cambiar a En Progreso',
-            icon: 'i-lucide-loader',
-            class: 'cursor-pointer',
-            click: () => {
-              console.log('Cambiar estado a en progreso:', ticket.id)
-            }
-          },
-          {
-            label: 'Cambiar a Resuelto',
-            icon: 'i-lucide-check-circle',
-            class: 'cursor-pointer',
-            click: () => {
-              console.log('Cambiar estado a resuelto:', ticket.id)
-            }
-          },
-          {
-            label: 'Cambiar a Cerrado',
-            icon: 'i-lucide-x-circle',
-            class: 'cursor-pointer',
-            click: () => {
-              console.log('Cambiar estado a cerrado:', ticket.id)
-            }
-          }]
-        ]
-      }, {
-        default: () => h(UButton, {
-          icon: 'i-lucide-more-vertical',
-          color: 'neutral',
-          variant: 'ghost',
-          class: 'cursor-pointer',
-          square: true
-        })
-      })
-    }
+    header: 'Acciones'
   }
 ]
