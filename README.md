@@ -33,6 +33,12 @@ DB_FILE_NAME=file:local.db
 npm run db:seed
 ```
 
+> **Nota**: Si hay algún error con la base de datos, ejecuta los siguientes comandos:
+> ```bash
+> npx drizzle-kit generate
+> npx drizzle-kit migrate
+> ```
+
 5. Iniciar el servidor de desarrollo en `http://localhost:3000`:
 
 ```bash
