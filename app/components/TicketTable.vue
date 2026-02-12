@@ -79,8 +79,27 @@ const openModal = (ticket: Ticket) => {
   isModalOpen.value = true
 }
 
-const changeStatus = (ticketId: number, status: string) => {
-  console.log('Cambiar estado:', ticketId, status)
+const changeStatus = async (ticketId: number, status: string) => {
+  try {
+    await $fetch(`/api/tickets/${ticketId}`, {
+      method: 'PATCH',
+      body: {
+        status
+      }
+    })
+
+    const ticketIndex = tickets.value.findIndex(t => t.id === ticketId)
+    if (ticketIndex !== -1) {
+      const updatedTicket = tickets.value[ticketIndex]
+      if (updatedTicket) {
+        updatedTicket.status = status as Ticket['status']
+      }
+    }
+
+    console.log('Estado actualizado exitosamente:', ticketId, status)
+  } catch (error) {
+    console.error('Error actualizando el estado del ticket:', error)
+  }
 }
 
 
