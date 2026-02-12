@@ -3,59 +3,83 @@ import type { Ticket } from '~/types/tickets';
 export const mockTickets: Ticket[] = [
   {
     id: 1,
-    description: 'Error en el login de usuarios',
+    title: 'Error en el login de usuarios',
+    description: 'Los usuarios no pueden iniciar sesión en el sistema desde esta mañana. Aparece un error 500.',
+    requestor: 'María García',
+    department: 'soporte',
     createdAt: '2026-02-10T09:30:00',
     status: 'open',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 2,
-    description: 'Optimizar consultas de base de datos',
+    title: 'Optimizar consultas de base de datos',
+    description: 'Las consultas a la base de datos están tomando demasiado tiempo. Necesitamos optimizar los índices.',
+    requestor: 'Juan Pérez',
+    department: 'desarrollo',
     createdAt: '2026-02-09T14:15:00',
     status: 'in_progress',
-    priority: 'medium'
+    priority: 'medium',
   },
   {
     id: 3,
-    description: 'Actualizar documentación de API',
+    title: 'Actualizar documentación de API',
+    description: 'La documentación de la API REST necesita actualizarse con los nuevos endpoints implementados.',
+    requestor: 'Pedro Martínez',
+    department: 'desarrollo',
     createdAt: '2026-02-08T11:00:00',
     status: 'resolved',
     priority: 'low'
   },
   {
     id: 4,
-    description: 'Servidor caído en producción',
+    title: 'Servidor caído en producción',
+    description: 'El servidor principal de producción no responde. Los clientes no pueden acceder al sistema.',
+    requestor: 'Laura Sánchez',
+    department: 'operaciones',
     createdAt: '2026-02-11T08:00:00',
     status: 'open',
-    priority: 'urgent'
+    priority: 'urgent',
   },
   {
     id: 5,
-    description: 'Implementar notificaciones push',
+    title: 'Implementar notificaciones push',
+    description: 'Necesitamos agregar funcionalidad de notificaciones push para la aplicación móvil.',
+    requestor: 'Roberto Fernández',
+    department: 'desarrollo',
     createdAt: '2026-02-07T16:45:00',
     status: 'in_progress',
     priority: 'medium'
   },
   {
     id: 6,
-    description: 'Corregir diseño responsive en móviles',
+    title: 'Corregir diseño responsive en móviles',
+    description: 'El diseño no se ve correctamente en dispositivos móviles pequeños. Varios elementos se superponen.',
+    requestor: 'Carmen Díaz',
+    department: 'marketing',
     createdAt: '2026-02-06T10:20:00',
     status: 'closed',
     priority: 'high'
   },
   {
     id: 7,
-    description: 'Agregar validación de formularios',
+    title: 'Agregar validación de formularios',
+    description: 'Los formularios de contacto necesitan validación adicional para prevenir spam.',
+    requestor: 'Diego Ruiz',
+    department: 'ventas',
     createdAt: '2026-02-05T13:30:00',
     status: 'resolved',
     priority: 'medium'
   },
   {
     id: 8,
-    description: 'Problema con carga de imágenes',
+    title: 'Problema con carga de imágenes',
+    description: 'Las imágenes no se cargan correctamente en el módulo de galería. Error al subir archivos grandes.',
+    requestor: 'Elena Moreno',
+    department: 'administracion',
     createdAt: '2026-02-11T07:15:00',
     status: 'open',
-    priority: 'high'
+    priority: 'high',
   }
 ];
 

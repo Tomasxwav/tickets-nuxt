@@ -24,6 +24,66 @@ export const columns: TableColumn<Ticket>[] = [
     cell: ({ row }) => `#${row.getValue('id')}`
   },
   {
+    accessorKey: 'title',
+    header: ({ column }) => {
+      const isSorted = column.getIsSorted()
+
+      return h(UButton, {
+        color: 'neutral',
+        variant: 'ghost',
+        label: 'Título',
+        icon: isSorted
+          ? isSorted === 'asc'
+            ? 'i-lucide-arrow-up-narrow-wide'
+            : 'i-lucide-arrow-down-wide-narrow'
+          : 'i-lucide-arrow-up-down',
+        class: '-mx-2.5 cursor-pointer',
+        onClick: () => column.toggleSorting(column.getIsSorted() === 'asc')
+      })
+    },
+    cell: ({ row }) => {
+      const title = row.getValue('title') as string
+      return h('div', { class: 'font-medium max-w-xs truncate' }, title)
+    }
+  },
+  {
+    accessorKey: 'requestor',
+    header: ({ column }) => {
+      const isSorted = column.getIsSorted()
+
+      return h(UButton, {
+        color: 'neutral',
+        variant: 'ghost',
+        label: 'Solicitante',
+        icon: isSorted
+          ? isSorted === 'asc'
+            ? 'i-lucide-arrow-up-narrow-wide'
+            : 'i-lucide-arrow-down-wide-narrow'
+          : 'i-lucide-arrow-up-down',
+        class: '-mx-2.5 cursor-pointer',
+        onClick: () => column.toggleSorting(column.getIsSorted() === 'asc')
+      })
+    }
+  },
+  {
+    accessorKey: 'department',
+    header: 'Departamento',
+    cell: ({ row }) => {
+      const department = row.getValue('department') as string
+      const departmentMap: Record<string, string> = {
+        soporte: 'Soporte',
+        desarrollo: 'Desarrollo',
+        rrhh: 'RRHH',
+        ventas: 'Ventas',
+        marketing: 'Marketing',
+        administracion: 'Administración',
+        finanzas: 'Finanzas',
+        operaciones: 'Operaciones'
+      }
+      return departmentMap[department] || department
+    }
+  },
+  {
     accessorKey: 'createdAt',
     header: ({ column }) => {
       const isSorted = column.getIsSorted()
@@ -50,10 +110,6 @@ export const columns: TableColumn<Ticket>[] = [
         hour12: false
       })
     }
-  },
-  {
-    accessorKey: 'description',
-    header: 'Descripción'
   },
   {
     accessorKey: 'status',

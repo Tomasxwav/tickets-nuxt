@@ -30,7 +30,7 @@
       </div>
 
       <div 
-        class="bg-white dark:bg-gray-900 rounded shadow dark:shadow-gray-800 p-4 min-h-100"
+        class="bg-white dark:bg-gray-900 rounded shadow dark:shadow-gray-800 p-4 min-h-100 z-100"
         :class="{ 'ring-2 ring-blue-500': dragOverColumn === 'in_progress' }"
         @drop.prevent="onDrop($event, 'in_progress')"
         @dragover.prevent
@@ -41,7 +41,7 @@
           En Progreso
           <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">({{ inProgressTickets.length }})</span>
         </h2>
-        <div v-if="inProgressTickets.length > 0">
+        <div v-if="inProgressTickets.length > 0" class="z-0">
           <TicketCard 
             v-for="ticket in inProgressTickets" 
             :key="ticket.id" 
@@ -131,11 +131,16 @@ const onDragEnter = (event: DragEvent, status: string) => {
   dragOverColumn.value = status
 }
 
-const onDragLeave = () => {
-  dragOverColumn.value = null
+const onDragLeave = (event: DragEvent) => {
+  const target = event.currentTarget as HTMLElement
+  const relatedTarget = event.relatedTarget as HTMLElement
+  
+  if (!target.contains(relatedTarget)) {
+    dragOverColumn.value = null
+  }
 }
 
-const onDrop = (event: DragEvent, newStatus: Ticket['status']) => {
+const onDrop = (_event: DragEvent, newStatus: Ticket['status']) => {
   dragOverColumn.value = null
   
   if (!draggedTicket.value) return
@@ -156,7 +161,8 @@ const onDrop = (event: DragEvent, newStatus: Ticket['status']) => {
   console.log(`Ticket ID: #${ticket.id}`)
   console.log(`Estado anterior: ${oldStatus}`)
   console.log(`Estado nuevo: ${targetStatus}`)
-  
+
   draggedTicket.value = null
 }
+
 </script>

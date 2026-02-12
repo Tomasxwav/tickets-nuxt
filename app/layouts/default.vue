@@ -9,6 +9,7 @@
     >
       <template #links>
         <ColorModeButton />
+        <TicketForm />
       </template>
     </UPageHeader>
 
