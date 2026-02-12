@@ -16,25 +16,30 @@
             [{
               label: 'Ver detalles',
               icon: 'i-lucide-eye',
+              class: 'cursor-pointer',
               onSelect: () => openModal(row.original)
             }],
             [{
               label: 'Cambiar a Pendiente',
+              class: 'cursor-pointer',
               icon: 'i-lucide-circle-dot',
               onSelect: () => changeStatus(row.original.id, 'open')
             },
             {
               label: 'Cambiar a En Progreso',
+              class: 'cursor-pointer',
               icon: 'i-lucide-loader',
               onSelect: () => changeStatus(row.original.id, 'in_progress')
             },
             {
               label: 'Cambiar a Resuelto',
+              class: 'cursor-pointer',
               icon: 'i-lucide-check-circle',
               onSelect: () => changeStatus(row.original.id, 'resolved')
             },
             {
               label: 'Cambiar a Cerrado',
+              class: 'cursor-pointer',
               icon: 'i-lucide-x-circle',
               onSelect: () => changeStatus(row.original.id, 'closed')
             }]
@@ -44,6 +49,7 @@
             icon="i-lucide-more-vertical"
             color="neutral"
             variant="ghost"
+            class="cursor-pointer"
             square
           />
         </UDropdownMenu>
@@ -89,9 +95,12 @@ const changeStatus = async (ticketId: number, status: string) => {
 
     const ticketIndex = tickets.value.findIndex(t => t.id === ticketId)
     if (ticketIndex !== -1) {
-      const updatedTicket = tickets.value[ticketIndex]
-      if (updatedTicket) {
-        updatedTicket.status = status as Ticket['status']
+      const currentTicket = tickets.value[ticketIndex]
+      if (currentTicket) {
+        tickets.value[ticketIndex] = {
+          ...currentTicket,
+          status: status as Ticket['status']
+        }
       }
     }
 
