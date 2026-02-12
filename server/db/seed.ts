@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/libsql';
 import { ticketsTable } from './schema';
 
-const db_file_name = process.env.DB_FILE_NAME || 'local.db';
+const db_file_name = process.env.DB_FILE_NAME || 'file:local.db';
 const db = drizzle(db_file_name);
 
 const defaultTickets = [
