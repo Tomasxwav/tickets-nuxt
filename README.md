@@ -2,18 +2,9 @@
 
 Este sistema fue desarrollado con Nuxt 4, Vue 3, Nuxt UI y SQLite con drizzle. Permite crear, visualizar y gestionar tickets con diferentes estados y prioridades mediante un tablero estilo Kanban y una tabla interactiva.
 
-## Stack usado
-
-- **Frontend**: Nuxt 4, Vue 3, TypeScript
-- **UI**: Nuxt UI, TailwindCSS
-- **Base de Datos**: SQLite (libSQL)
-- **ORM**: Drizzle ORM
-- **Validación**: Zod
-
 ## Requisitos
 
-- Node.js 18+ o superior
-- npm, pnpm, yarn o bun
+- Node.js 18+
 
 ## Pasos para correr el proyecto
 
@@ -42,9 +33,7 @@ DB_FILE_NAME=file:local.db
 npm run db:seed
 ```
 
-Este comando creará la base de datos SQLite y la poblará con datos de ejemplo.
-
-5. Inicia el servidor de desarrollo en `http://localhost:3000`:
+5. Iniciar el servidor de desarrollo en `http://localhost:3000`:
 
 ```bash
 npm run dev
@@ -96,3 +85,18 @@ Actualiza el estado de un ticket.
 }
 ```
 
+## Desiciones tecnicas
+
+Para el desarrollo de este proyecto decidí utilizar un framework full stack moderno como Nuxt, con el objetivo de centralizar en un mismo entorno el frontend, el backend y la conexión con la base de datos, y de esa forma tener un desarrollo mas rápido.
+
+Como motor de base de datos opté por libSQL, una versión optimizada de SQLite recomendada por Drizzle, el ORM utilizado en el proyecto. Drizzle permite realizar consultas a la base de datos de manera tipada y segura desde TypeScript.
+
+En el frontend, para optimizar tiempos de desarrollo y lograr un diseño moderno y consistente, utilicé Nuxt UI, una librería de componentes estilizados y funcionales. Esta librería se apoya en Tailwind CSS, lo que permite personalizar fácilmente los estilos.
+
+## Stack usado
+
+- **Frontend**: Nuxt 4, Vue 3, TypeScript
+- **UI**: Nuxt UI, TailwindCSS
+- **Base de Datos**: SQLite (libSQL)
+- **ORM**: Drizzle ORM
+- **Validación**: Zod
