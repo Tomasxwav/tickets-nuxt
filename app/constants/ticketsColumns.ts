@@ -128,7 +128,8 @@ export const columns: TableColumn<Ticket>[] = [
       return h(UBadge, {
         label: statusMap[status] || status,
         color: colorMap[status] || 'neutral',
-        variant: "subtle"
+        variant: "solid",
+        class: `${colorMap[status] !== 'success' ? 'text-black' : 'text-black font-bold'}`
       })
     }
   },
@@ -160,14 +161,14 @@ export const columns: TableColumn<Ticket>[] = [
       }
       const colorMap: Record<string, BadgeProps['color']> = {
         low: 'success',
-        medium: 'warning',
-        high: 'error',
-        urgent: 'neutral'
+        medium: 'info',
+        high: 'warning',
+        urgent: 'error'
       }
       return h(UBadge, {
         label: priorityMap[priority] || priority,
         color: colorMap[priority] || 'neutral',
-        variant: "solid"
+        variant: "subtle",
       })
     }
   },

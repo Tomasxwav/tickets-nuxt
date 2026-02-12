@@ -18,5 +18,5 @@ export default defineEventHandler(async (event) => {
     status: ticket.status,
     priority: ticket.priority,
     createdAt: new Date(ticket.created_at).toISOString()
-  }))
+  })).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 })
