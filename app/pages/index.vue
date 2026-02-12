@@ -7,6 +7,16 @@
       </div>
     </div>
 
+    <div v-else-if="error" class="flex items-center justify-center py-12">
+      <UAlert
+        color="error"
+        variant="soft"
+        title="Error al cargar tickets"
+        :description="error"
+        icon="i-heroicons-exclamation-triangle"
+      />
+    </div>
+
     <UTabs 
       v-else
       color="neutral"
@@ -28,7 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import { fetchTickets } from '~/mocks/tickets';
 import type { Ticket } from '~/types/tickets';
 import type { TabsItem } from '@nuxt/ui'
 
@@ -45,13 +54,18 @@ const tabItems = ref<TabsItem[]>([
 
 const loading = ref(true)
 const tickets = ref<Ticket[]>([])
+const error = ref<string | null>(null)
 
 onMounted(async () => {
   try {
     loading.value = true
-    tickets.value = await fetchTickets()
-  } catch (error) {
-    console.error('Error al cargar tickets:', error)
+    error.value = null
+    
+    const data = await $fetch<Ticket[]>('/api/tickets')
+    tickets.value = data
+  } catch (err: unknown) {
+    console.error('Error al cargar tickets:', err)
+    error.value = (err instanceof Error ? err.message : 'Error al cargar los tickets')
   } finally {
     loading.value = false
   }
